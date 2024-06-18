@@ -723,7 +723,7 @@ ingress:
       path: /
       backend:
         service:
-          name: wp1-wordpress
+          name: wordpress-svc
           port:
             name: http
 
