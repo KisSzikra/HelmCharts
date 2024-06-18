@@ -719,7 +719,7 @@ ingress:
   ##
   extraRules:
   - host: wp1.szikrakocka.hu
-      http:
+    http:
         path: /
         backend:
           service:
