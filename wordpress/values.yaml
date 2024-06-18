@@ -682,7 +682,7 @@ ingress:
   ##
   extraTls:
   - hosts:
-    - wp1.szikrakocka.hu
+      - wp1.szikrakocka.hu
     secretName: wp1-certificate
   ## @param ingress.secrets Custom TLS certificates as secrets
   ## NOTE: 'key' and 'certificate' are expected in PEM format
@@ -717,15 +717,7 @@ ingress:
   ##           port:
   ##             name: http
   ##
-  extraRules:
-  - host: wp1.szikrakocka.hu
-    http:
-      path: /
-      backend:
-        service:
-          name: wordpress-svc
-          port:
-            name: http
+  extraRules: []
 
 ## Configure second ingress resource that allows you to access the WordPress installation
 ## This may be used to secure /wp-admin behind authentication or IP restrictions
