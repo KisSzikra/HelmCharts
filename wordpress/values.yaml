@@ -1294,7 +1294,7 @@ externalDatabase:
   user: bn_wordpress
   ## @param externalDatabase.password External Database user password
   ##
-  password: ""
+  password: "SonosDellWindows"
   ## @param externalDatabase.database External Database database name
   ##
   database: bitnami_wordpress
