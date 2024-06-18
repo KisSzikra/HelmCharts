@@ -107,11 +107,11 @@ image:
 
 ## @param wordpressUsername WordPress username
 ##
-wordpressUsername: user
+wordpressUsername: wpuser
 ## @param wordpressPassword WordPress user password
 ## Defaults to a random 10-character alphanumeric string if not set
 ##
-wordpressPassword: ""
+wordpressPassword: "SonosDellWindows"
 ## @param existingSecret Name of existing secret containing WordPress credentials
 ## NOTE: Must contain key `wordpress-password`
 ## NOTE: When it's set, the `wordpressPassword` parameter is ignored
@@ -1238,10 +1238,10 @@ mariadb:
   ##      https://github.com/bitnami/containers/blob/main/bitnami/mariadb/README.md#creating-a-database-user-on-first-run
   ##
   auth:
-    rootPassword: ""
+    rootPassword: "SonosDellWindows"
     database: bitnami_wordpress
     username: bn_wordpress
-    password: ""
+    password: "SonosDellWindows"
   ## MariaDB Primary configuration
   ##
   primary:
