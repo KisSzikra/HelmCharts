@@ -1,8 +1,4 @@
 global:
-  dockerProxyCredentials:
-    registry: docker-proxy.innovitech.org
-    username: "u"
-    password: "p"
   devtools:
     enabled: false
     phpmyadmin:
@@ -16,9 +12,9 @@ global:
 mariadb:
   image: mariadb
   sha256: bdf2a26e862a71bd4f12eb0d390edea4c3d9c8374c194e6d8a8603a63ee9abf1
-  password: "p"
+  password: "SonosDellWindowsSony"
 persistence:
   storage:
     enabled: true
-    storageClass: nfs-client
-    size: 1Gi
+    storageClass: ceph-block
+    size: 5Gi
