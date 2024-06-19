@@ -1,4 +1,8 @@
 global:
+  dockerProxyCredentials:
+    registry: 
+    username: ""
+    password: ""
   devtools:
     enabled: false
     phpmyadmin:
