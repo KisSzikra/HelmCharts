@@ -625,7 +625,7 @@ ingress:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer
 
-  tls: false
+  tls: true
 
   tlsWwwPrefix: false
 
@@ -635,10 +635,10 @@ ingress:
 
   extraPaths: []
 
-  extraTls:
-  - hosts:
-      - wp1.szikrakocka.hu
-    secretName: wp1-certificate
+  extraTls: []
+  # - hosts:
+  #     - wp1.szikrakocka.hu
+  #   secretName: wp1-certificate
 
   secrets: []
   
