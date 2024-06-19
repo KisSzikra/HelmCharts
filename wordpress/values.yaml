@@ -621,6 +621,7 @@ ingress:
 
   path: /
   annotations:
+    kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer
   tls: false
 
