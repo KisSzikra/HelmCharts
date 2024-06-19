@@ -611,6 +611,9 @@ ingress:
   enabled: true
   ## @param ingress.pathType Ingress path type
   ##
+
+  certManager: true
+
   pathType: ImplementationSpecific
   ## @param ingress.apiVersion Force Ingress API version (automatically detected if not set)
   ##
