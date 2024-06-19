@@ -609,7 +609,7 @@ ingress:
 
   enabled: true
 
-  pathType: ImplementationSpecific
+  pathType: Prefix
 
   certManager: true
 
