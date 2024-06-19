@@ -615,7 +615,7 @@ ingress:
   ## @param ingress.apiVersion Force Ingress API version (automatically detected if not set)
   ##
 
-  certmangaer: true
+  certManager: true
 
   apiVersion: ""
   ## @param ingress.ingressClassName IngressClass that will be be used to implement the Ingress (Kubernetes 1.18+)
@@ -651,7 +651,7 @@ ingress:
   ##   - Rely on cert-manager to create it by setting the corresponding annotations
   ##   - Rely on Helm to create self-signed certificates by setting `ingress.selfSigned=true`
   ##
-  tls: true
+  tls: false
   ## @param ingress.tlsWwwPrefix Adds www subdomain to default cert
   ## Creates tls host with ingress.hostname: {{ print "www.%s" .Values.ingress.hostname }}
   ## Is enabled if "nginx.ingress.kubernetes.io/from-to-www-redirect" is "true"
@@ -683,10 +683,10 @@ ingress:
   ##     - wordpress.local
   ##   secretName: wordpress.local-tls
   ##
-  extraTls: []
-  # - hosts:
-  #     - wp1.szikrakocka.hu
-  #   secretName: wp1-certificate
+  extraTls:
+  - hosts:
+      - wp1.szikrakocka.hu
+    secretName: wp1-certificate
   ## @param ingress.secrets Custom TLS certificates as secrets
   ## NOTE: 'key' and 'certificate' are expected in PEM format
   ## NOTE: 'name' should line up with a 'secretName' set further up
