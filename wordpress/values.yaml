@@ -617,7 +617,7 @@ ingress:
 
   ingressClassName: "nginx"
 
-  hostname: wp1.szikrakocka.hu
+  hostname: wp2.szikrakocka.hu
 
   path: /
   annotations:
@@ -634,8 +634,8 @@ ingress:
 
   extraTls:
   - hosts:
-      - wp1.szikrakocka.hu
-    secretName: wp1-certificate
+      - wp2.szikrakocka.hu
+    secretName: wp2-certificate
 
   secrets: []
   
