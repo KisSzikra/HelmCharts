@@ -1,0 +1,24 @@
+global:
+  dockerProxyCredentials:
+    registry: docker-proxy.innovitech.org
+    username: "u"
+    password: "p"
+  devtools:
+    enabled: false
+    phpmyadmin:
+      image: phpmyadmin
+      sha256: 9d807f4126d5793e405a398b2f2327cd7a3548af99d8dd6a164969974d5975e7
+  domain: k8s.innovitech.org
+  networkPolicy:
+    ingress:
+      namespaceSelector: ingress-nginx
+      appSelector: ingress-nginx
+mariadb:
+  image: mariadb
+  sha256: bdf2a26e862a71bd4f12eb0d390edea4c3d9c8374c194e6d8a8603a63ee9abf1
+  password: "p"
+persistence:
+  storage:
+    enabled: true
+    storageClass: nfs-client
+    size: 1Gi

@@ -1,0 +1,20 @@
+{{ if .Values.global.devtools.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  name: mariadb-tools-ingress
+spec:
+  rules:
+    - host: {{ .Release.Namespace }}-tools.{{ .Values.global.domain }}
+      http:
+        paths:
+          - path: /phpmyadmin(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Release.Name }}-phpmyadmin
+                port:
+                  number: 80
+{{ end }}
