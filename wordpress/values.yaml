@@ -624,7 +624,7 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer
     nginx.ingress.kubernetes.io/proxy-body-size: 2G
 
-  tls: true
+  tls: false
 
   tlsWwwPrefix: false
 
@@ -643,17 +643,17 @@ ingress:
 
   secrets: []
 
-  extraRules: []
-  # - host: wp1.szikrakocka.hu
-  #   http:
-  #     paths:
-  #       path: /
-  #       pathType: Prefix
-  #       backend:
-  #         service:
-  #           name: wp1-wordpress
-  #           port:
-  #             number: 80
+  extraRules:
+  - host: wp1.szikrakocka.hu
+    http:
+      paths:
+        path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: wp1-wordpress
+            port:
+              name: https
 
 ## Configure second ingress resource that allows you to access the WordPress installation
 ## This may be used to secure /wp-admin behind authentication or IP restrictions
