@@ -1230,19 +1230,19 @@ mariadb:
 externalDatabase:
   ## @param externalDatabase.host External Database server host
   ##
-  host: db1-mysql
+  host: db1-mariadb
   ## @param externalDatabase.port External Database server port
   ##
   port: 3306
   ## @param externalDatabase.user External Database username
   ##
-  user: bn_wordpress
+  user: wp_wordpress
   ## @param externalDatabase.password External Database user password
   ##
   password: "SonosDellWindows"
   ## @param externalDatabase.database External Database database name
   ##
-  database: bitnami_wordpress
+  database: wp_wordpress
   ## @param externalDatabase.existingSecret The name of an existing secret with database credentials. Evaluated as a template
   ## NOTE: Must contain key `mariadb-password`
   ## NOTE: When it's set, the `externalDatabase.password` parameter is ignored

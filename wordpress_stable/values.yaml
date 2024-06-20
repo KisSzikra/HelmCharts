@@ -14,7 +14,7 @@
 image:
   registry: docker.io
   repository: bitnami/wordpress
-  tag: 5.3.2-debian-10-r32
+  tag: 6.5.4-debian-12-r5
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -41,7 +41,7 @@ image:
 ## User of the application
 ## ref: https://github.com/bitnami/bitnami-docker-wordpress#environment-variables
 ##
-wordpressUsername: user
+wordpressUsername: szikraadam
 
 ## Application password
 ## Defaults to a random 10-character alphanumeric string if not set
@@ -52,17 +52,17 @@ wordpressUsername: user
 ## Admin email
 ## ref: https://github.com/bitnami/bitnami-docker-wordpress#environment-variables
 ##
-wordpressEmail: user@example.com
+wordpressEmail: szikraadam@szikraadam.hu
 
 ## First name
 ## ref: https://github.com/bitnami/bitnami-docker-wordpress#environment-variables
 ##
-wordpressFirstName: FirstName
+wordpressFirstName: Adam
 
 ## Last name
 ## ref: https://github.com/bitnami/bitnami-docker-wordpress#environment-variables
 ##
-wordpressLastName: LastName
+wordpressLastName: LastNSzikraame
 
 ## Blog name
 ## ref: https://github.com/bitnami/bitnami-docker-wordpress#environment-variables
@@ -269,15 +269,15 @@ service:
 ingress:
   ## Set to true to enable ingress record generation
   ##
-  enabled: false
+  enabled: true
 
   ## Set this to true in order to add the corresponding annotations for cert-manager
   ##
-  certManager: false
+  certManager: true
 
   ## When the ingress is enabled, a host pointing to this will be created
   ##
-  hostname: wordpress.local
+  hostname: wp1.szikrakocka.hu
 
   ## Ingress annotations done as key:value pairs
   ## For a full list of possible ingress annotations, please see
@@ -285,7 +285,9 @@ ingress:
   ##
   ## If certManager is set to true, annotation kubernetes.io/tls-acme: "true" will automatically be set
   ##
-  annotations: {}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer
 
   ## The list of additional hostnames to be covered with this ingress record.
   ## Most likely the hostname above will be enough, but in the event more hosts are needed, this is an array
@@ -295,10 +297,10 @@ ingress:
 
   ## The tls configuration for additional hostnames to be covered with this ingress record.
   ## see: https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
-  ## extraTls:
-  ## - hosts:
-  ##     - wordpress.local
-  ##   secretName: wordpress.local-tls
+  extraTls:
+  - hosts:
+      - wp1.szikrakocka.hu
+    secretName: wp1-certificate
 
   ## If you're providing your own certificates, please use this to add the certificates as secrets
   ## key and certificate should start with -----BEGIN CERTIFICATE----- or
@@ -327,7 +329,7 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  # storageClass: "-"
+  storageClass: "cepf-filesystem"
   ##
   ## If you want to reuse an existing claim, you can pass the name of the PVC using
   ## the existingClaim variable
@@ -342,7 +344,7 @@ persistence:
 ##
 mariadb:
   ## Whether to deploy a mariadb server to satisfy the applications database requirements. To use an external database set this to false and configure the externalDatabase parameters
-  enabled: true
+  enabled: false
   ## Disable MariaDB replication
   replication:
     enabled: false
@@ -389,19 +391,19 @@ mariadb:
 externalDatabase:
   ## Database host
   ##
-  host: localhost
+  host: db1-mariadb
 
   ## non-root Username for Wordpress Database
   ##
-  user: bn_wordpress
+  user: wp_wordpress
 
   ## Database password
   ##
-  password: ""
+  password: "SonosDellWindows"
 
   ## Database name
   ##
-  database: bitnami_wordpress
+  database: wp_wordpress
 
   ## Database port number
   ##
