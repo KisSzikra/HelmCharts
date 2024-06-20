@@ -712,7 +712,15 @@ ingress:
   ##           port:
   ##             name: http
   ##
-  extraRules: []
+  extraRules:
+  - host: wp1.szikrakocka.hu
+      http:
+        path: /
+        backend:
+          service:
+            name: wp1-wordpress
+            port:
+              number: 80
 
 ## Configure second ingress resource that allows you to access the WordPress installation
 ## This may be used to secure /wp-admin behind authentication or IP restrictions
