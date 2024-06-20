@@ -658,12 +658,11 @@ ingress:
   selfSigned: false
   ## @param ingress.extraHosts An array with additional hostname(s) to be covered with the ingress record. The host names are templated and thus can contain other variable references.
   ## e.g:
-  ## extraHosts:
-  ##   - name: wordpress.local
-  ##     path: /
+  extraHosts:
+    - name: wp1.szikrakocka.hu
+      path: /
   ##
-  extraHosts: []
-  ## @param ingress.extraPaths An array with additional arbitrary paths that may need to be added to the ingress under the main host
+    ## @param ingress.extraPaths An array with additional arbitrary paths that may need to be added to the ingress under the main host
   ## e.g:
   ## extraPaths:
   ## - path: /*
@@ -680,7 +679,6 @@ ingress:
       - wp1.szikrakocka.hu
     secretName: wp1-tls
   ##
-  extraTls: []
   ## @param ingress.secrets Custom TLS certificates as secrets
   ## NOTE: 'key' and 'certificate' are expected in PEM format
   ## NOTE: 'name' should line up with a 'secretName' set further up
