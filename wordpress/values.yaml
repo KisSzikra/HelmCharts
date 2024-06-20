@@ -1221,7 +1221,7 @@ mariadb:
   ## @param mariadb.enabled Deploy a MariaDB server to satisfy the applications database requirements
   ## To use an external database set this to false and configure the `externalDatabase.*` parameters
   ##
-  enabled: true
+  enabled: false
   ## @param mariadb.architecture MariaDB architecture. Allowed values: `standalone` or `replication`
   ##
   architecture: standalone
@@ -1282,7 +1282,7 @@ mariadb:
 externalDatabase:
   ## @param externalDatabase.host External Database server host
   ##
-  host: localhost
+  host: db1-mariadb
   ## @param externalDatabase.port External Database server port
   ##
   port: 3306
@@ -1291,7 +1291,7 @@ externalDatabase:
   user: bn_wordpress
   ## @param externalDatabase.password External Database user password
   ##
-  password: ""
+  password: "SonosDellWindowsSony"
   ## @param externalDatabase.database External Database database name
   ##
   database: bitnami_wordpress
