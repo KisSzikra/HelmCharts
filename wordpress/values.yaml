@@ -608,7 +608,7 @@ service:
 ingress:
   ## @param ingress.enabled Enable ingress record generation for WordPress
   ##
-  enabled: true
+  enabled: false
   ## @param ingress.pathType Ingress path type
   ##
   pathType: ImplementationSpecific
