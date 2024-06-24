@@ -683,10 +683,7 @@ ingress:
   ##     - wordpress.local
   ##   secretName: wordpress.local-tls
   ##
-  extraTls:
-  - hosts:
-    - wp1.szikrakocka.hu
-    secretName: wp1-tls
+  extraTls: []
   ## @param ingress.secrets Custom TLS certificates as secrets
   ## NOTE: 'key' and 'certificate' are expected in PEM format
   ## NOTE: 'name' should line up with a 'secretName' set further up
