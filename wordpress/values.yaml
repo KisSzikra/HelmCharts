@@ -1285,7 +1285,7 @@ mariadb:
 externalDatabase:
   ## @param externalDatabase.host External Database server host
   ##
-  host: db1-mariadb
+  host: db-0-mariadb
   ## @param externalDatabase.port External Database server port
   ##
   port: 3306
