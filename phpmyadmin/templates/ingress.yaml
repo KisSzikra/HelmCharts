@@ -62,4 +62,9 @@ spec:
     {{- include "common.tplvalues.render" ( dict "value" .Values.ingress.extraTls "context" $ ) | nindent 4 }}
     {{- end }}
   {{- end }}
+status:
+  loadBalancer:
+    ingress:
+      - hostname:
+          phpmyadmin.szikrakocka.hu
 {{- end }}
