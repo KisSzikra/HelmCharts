@@ -305,7 +305,7 @@ hostAliases:
   ##
   - ip: "127.0.0.1"
     hostnames:
-      - "status.localhost"
+      - "wp0.szikrakocka.hu"
 ## @param extraVolumes Optionally specify extra list of additional volumes for WordPress pods
 ##
 extraVolumes: []
