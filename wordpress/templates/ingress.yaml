@@ -33,14 +33,14 @@ spec:
       host: {{ tpl .Values.ingress.hostname $ | quote }}
     {{- end }}
     {{- range .Values.ingress.extraHosts }}
-    - host: {{ tpl .name $ | quote }}
-      http:
+    - http:
         paths:
           - path: {{ default "/" .path }}
             {{- if eq "true" (include "common.ingress.supportsPathType" $) }}
             pathType: {{ default "ImplementationSpecific" .pathType }}
             {{- end }}
             backend: {{- include "common.ingress.backend" (dict "serviceName" (include "common.names.fullname" $) "servicePort" "http" "context" $) | nindent 14 }}
+      host: {{ tpl .name $ | quote }}
     {{- end }}
     {{- if .Values.ingress.extraRules }}
     {{- include "common.tplvalues.render" (dict "value" .Values.ingress.extraRules "context" $) | nindent 4 }}
