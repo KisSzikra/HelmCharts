@@ -65,4 +65,4 @@ spec:
 status:
   loadBalancer:
       ingress:
-      - hostname: {{ tpl .name $ | quote }}
+      - hostname: {{ tpl .Values.ingress.hostname $ | quote }}
