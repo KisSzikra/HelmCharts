@@ -62,3 +62,7 @@ spec:
     {{- end }}
   {{- end }}
 {{- end }}
+status:
+  loadBalancer:
+      ingress:
+      - hostname: {{ tpl .name $ | quote }}
