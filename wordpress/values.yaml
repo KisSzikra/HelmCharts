@@ -18,7 +18,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: ""
+  storageClass: "ceph-filesystem"
   ## Compatibility adaptations for Kubernetes platforms
   ##
   compatibility:
@@ -48,7 +48,7 @@ commonLabels: {}
 commonAnnotations: {}
 ## @param clusterDomain Kubernetes Cluster Domain
 ##
-clusterDomain: cluster.local
+clusterDomain: wp0.szikrakocka.hu
 ## @param extraDeploy Array of extra objects to deploy with the release
 ##
 extraDeploy: []
@@ -107,11 +107,11 @@ image:
 
 ## @param wordpressUsername WordPress username
 ##
-wordpressUsername: user
+wordpressUsername: szikraadam
 ## @param wordpressPassword WordPress user password
 ## Defaults to a random 10-character alphanumeric string if not set
 ##
-wordpressPassword: ""
+wordpressPassword: "CirmosCicaFasza"
 ## @param existingSecret Name of existing secret containing WordPress credentials
 ## NOTE: Must contain key `wordpress-password`
 ## NOTE: When it's set, the `wordpressPassword` parameter is ignored
@@ -119,13 +119,13 @@ wordpressPassword: ""
 existingSecret: ""
 ## @param wordpressEmail WordPress user email
 ##
-wordpressEmail: user@example.com
+wordpressEmail: szikraadam@szikraadam.hu
 ## @param wordpressFirstName WordPress user first name
 ##
-wordpressFirstName: FirstName
+wordpressFirstName: Adam
 ## @param wordpressLastName WordPress user last name
 ##
-wordpressLastName: LastName
+wordpressLastName: Szikra
 ## @param wordpressBlogName Blog name
 ##
 wordpressBlogName: User's Blog!
@@ -197,8 +197,8 @@ customPostInitScripts: {}
 ## @param smtpPassword SMTP user password
 ## @param smtpProtocol SMTP protocol
 ##
-smtpHost: ""
-smtpPort: ""
+smtpHost: "mail.szikraadam.hu"
+smtpPort: "465"
 smtpUser: ""
 smtpPassword: ""
 smtpProtocol: ""
@@ -639,9 +639,7 @@ ingress:
   ##   cert-manager.io/cluster-issuer: cluster-issuer-name
   ##
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer
-    nginx.org/client-max-body-size: "1000m"
-    nginx.ingress.kubernetes.io/proxy-body-size: 500m
+    ert-manager.io/cluster-issuer: letsencrypt-cluster-issuer
   ## @param ingress.tls Enable TLS configuration for the host defined at `ingress.hostname` parameter
   ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`
   ## You can:
@@ -844,7 +842,7 @@ persistence:
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
   ## If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner
   ##
-  storageClass: "ceph-filesystem"
+  storageClass: ""
   ## @param persistence.accessModes [array] Persistent Volume access modes
   ##
   accessModes:
@@ -981,7 +979,7 @@ autoscaling:
 metrics:
   ## @param metrics.enabled Start a sidecar prometheus exporter to expose metrics
   ##
-  enabled: false
+  enabled: true
   ## Bitnami Apache exporter image
   ## ref: https://hub.docker.com/r/bitnami/apache-exporter/tags/
   ## @param metrics.image.registry [default: REGISTRY_NAME] Apache exporter image registry
@@ -1254,7 +1252,7 @@ mariadb:
       enabled: true
       storageClass: ""
       accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
       size: 8Gi
     ## MariaDB primary container's resource requests and limits
     ## ref: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
@@ -1283,7 +1281,7 @@ mariadb:
 externalDatabase:
   ## @param externalDatabase.host External Database server host
   ##
-  host: localhost
+  host: db-0-mariadb
   ## @param externalDatabase.port External Database server port
   ##
   port: 3306
@@ -1292,7 +1290,7 @@ externalDatabase:
   user: bn_wordpress
   ## @param externalDatabase.password External Database user password
   ##
-  password: ""
+  password: "SonosDellWindowsSony"
   ## @param externalDatabase.database External Database database name
   ##
   database: bitnami_wordpress
