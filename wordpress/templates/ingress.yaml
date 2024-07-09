@@ -62,7 +62,3 @@ spec:
     {{- end }}
   {{- end }}
 {{- end }}
-status:
-  loadBalancer:
-    ingress:
-    - ip: 194.163.175.141
