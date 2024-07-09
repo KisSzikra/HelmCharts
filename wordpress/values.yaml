@@ -461,7 +461,7 @@ containerSecurityContext:
 ## @param livenessProbe.successThreshold Success threshold for livenessProbe
 ##
 livenessProbe:
-  enabled: true
+  enabled: false
   tcpSocket:
     port: http
   initialDelaySeconds: 120
@@ -478,7 +478,7 @@ livenessProbe:
 ## @param readinessProbe.successThreshold Success threshold for readinessProbe
 ##
 readinessProbe:
-  enabled: true
+  enabled: false
   httpGet:
     path: /wp-login.php
     port: '{{ .Values.wordpressScheme }}'
