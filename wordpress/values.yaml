@@ -18,7 +18,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: "ceph-filesystem"
+  storageClass: ""
   ## Compatibility adaptations for Kubernetes platforms
   ##
   compatibility:
@@ -82,7 +82,7 @@ diagnosticMode:
 image:
   registry: docker.io
   repository: bitnami/wordpress
-  tag: 6.5.4-debian-12-r6
+  tag: 6.5.5-debian-12-r0
   digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -111,7 +111,7 @@ wordpressUsername: user
 ## @param wordpressPassword WordPress user password
 ## Defaults to a random 10-character alphanumeric string if not set
 ##
-wordpressPassword: "CirmosCica"
+wordpressPassword: ""
 ## @param existingSecret Name of existing secret containing WordPress credentials
 ## NOTE: Must contain key `wordpress-password`
 ## NOTE: When it's set, the `wordpressPassword` parameter is ignored
@@ -119,13 +119,13 @@ wordpressPassword: "CirmosCica"
 existingSecret: ""
 ## @param wordpressEmail WordPress user email
 ##
-wordpressEmail: szikradam@szikraadam.hu
+wordpressEmail: user@example.com
 ## @param wordpressFirstName WordPress user first name
 ##
-wordpressFirstName: Adam
+wordpressFirstName: FirstName
 ## @param wordpressLastName WordPress user last name
 ##
-wordpressLastName: Szikra
+wordpressLastName: LastName
 ## @param wordpressBlogName Blog name
 ##
 wordpressBlogName: User's Blog!
@@ -209,7 +209,7 @@ smtpProtocol: ""
 smtpExistingSecret: ""
 ## @param allowEmptyPassword Allow the container to be started with blank passwords
 ##
-allowEmptyPassword: false
+allowEmptyPassword: true
 ## @param allowOverrideNone Configure Apache to prohibit overriding directives with htaccess files
 ##
 allowOverrideNone: false
@@ -305,7 +305,7 @@ hostAliases:
   ##
   - ip: "127.0.0.1"
     hostnames:
-      - "wp0.szikrakocka.hu"
+      - "status.localhost"
 ## @param extraVolumes Optionally specify extra list of additional volumes for WordPress pods
 ##
 extraVolumes: []
@@ -461,7 +461,7 @@ containerSecurityContext:
 ## @param livenessProbe.successThreshold Success threshold for livenessProbe
 ##
 livenessProbe:
-  enabled: false
+  enabled: true
   tcpSocket:
     port: http
   initialDelaySeconds: 120
@@ -478,7 +478,7 @@ livenessProbe:
 ## @param readinessProbe.successThreshold Success threshold for readinessProbe
 ##
 readinessProbe:
-  enabled: false
+  enabled: true
   httpGet:
     path: /wp-login.php
     port: '{{ .Values.wordpressScheme }}'
@@ -547,7 +547,7 @@ lifecycleHooks: {}
 service:
   ## @param service.type WordPress service type
   ##
-  type: ClusterIP
+  type: LoadBalancer
   ## @param service.ports.http WordPress service HTTP port
   ## @param service.ports.https WordPress service HTTPS port
   ##
@@ -620,9 +620,6 @@ ingress:
   ## ref: https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/
   ##
   ingressClassName: "nginx"
-
-  ###certmanager: true
-
   ## @param ingress.hostname Default host for the ingress record. The hostname is templated and thus can contain other variable references.
   ##
   hostname: wp0.szikrakocka.hu
@@ -642,9 +639,9 @@ ingress:
   ##   cert-manager.io/cluster-issuer: cluster-issuer-name
   ##
   annotations:
-    kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer
-    argoproj.io/expect-ingresses: "false"
+    nginx.org/client-max-body-size: "1000m"
+    nginx.ingress.kubernetes.io/proxy-body-size: 500m
   ## @param ingress.tls Enable TLS configuration for the host defined at `ingress.hostname` parameter
   ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`
   ## You can:
@@ -851,10 +848,10 @@ persistence:
   ## @param persistence.accessModes [array] Persistent Volume access modes
   ##
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   ## @param persistence.accessMode Persistent Volume access mode (DEPRECATED: use `persistence.accessModes` instead)
   ##
-  accessMode: ReadWriteMany
+  accessMode: ReadWriteOnce
   ## @param persistence.size Persistent Volume size
   ##
   size: 10Gi
@@ -984,7 +981,7 @@ autoscaling:
 metrics:
   ## @param metrics.enabled Start a sidecar prometheus exporter to expose metrics
   ##
-  enabled: true
+  enabled: false
   ## Bitnami Apache exporter image
   ## ref: https://hub.docker.com/r/bitnami/apache-exporter/tags/
   ## @param metrics.image.registry [default: REGISTRY_NAME] Apache exporter image registry
@@ -1257,7 +1254,7 @@ mariadb:
       enabled: true
       storageClass: ""
       accessModes:
-        - ReadWriteMany
+        - ReadWriteOnce
       size: 8Gi
     ## MariaDB primary container's resource requests and limits
     ## ref: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
@@ -1286,7 +1283,7 @@ mariadb:
 externalDatabase:
   ## @param externalDatabase.host External Database server host
   ##
-  host: db-0-mariadb
+  host: localhost
   ## @param externalDatabase.port External Database server port
   ##
   port: 3306
@@ -1295,7 +1292,7 @@ externalDatabase:
   user: bn_wordpress
   ## @param externalDatabase.password External Database user password
   ##
-  password: "SonosDellWindowsSony"
+  password: ""
   ## @param externalDatabase.database External Database database name
   ##
   database: bitnami_wordpress
