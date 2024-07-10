@@ -17,7 +17,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: ""
+  storageClass: "ceph-filesystem"
   ## Compatibility adaptations for Kubernetes platforms
   ##
   compatibility:
