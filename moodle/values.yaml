@@ -115,7 +115,7 @@ moodleSiteName: "Tudastar"
 ## @param moodleLang Site language
 ## ref: https://github.com/bitnami/containers/tree/main/bitnami/moodle#configuration
 ##
-moodleLang: ""
+moodleLang: "hu"
 ## @param moodleUsername User of the application
 ## ref: https://github.com/bitnami/containers/tree/main/bitnami/moodle#configuration
 ##
