@@ -669,10 +669,10 @@ mariadb:
 ## @param externalDatabase.existingSecret Name of a secret with the database password. (externalDatabase.password will be ignored and picked up from this secret). The secret has to contain the key db-password
 ##
 externalDatabase:
-  host: "db-0-mariadb"
+  host: db-0-mariadb
   port: 3306
   user: bn_drupal
-  password: "hasze8-qidqeZ-piwxed"
+  password: hasze8-qidqeZ-piwxed
   database: bn_drupal
   existingSecret: ""
 ## @section Volume Permissions parameters
