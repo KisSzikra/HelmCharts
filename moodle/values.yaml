@@ -687,7 +687,7 @@ mariadb:
       ## @param mariadb.primary.persistence.accessModes PVC Access Modes for Moodle&trade; volume
       ##
       accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
       ## @param mariadb.primary.persistence.size Database Persistent Volume Size
       ##
       size: 8Gi
