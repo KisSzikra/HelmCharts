@@ -110,7 +110,7 @@ drupalEmail: szikraadam@szikraadam.hu
 ## @param allowEmptyPassword Allow DB blank passwords
 ## ref: https://github.com/bitnami/containers/tree/main/bitnami/drupal#environment-variables
 ##
-allowEmptyPassword: true
+allowEmptyPassword: false
 ## @param command Override default container command (useful when using custom images)
 ##
 command: []
@@ -672,7 +672,7 @@ externalDatabase:
   host: db-0-mariadb
   port: 3306
   user: bn_drupal
-  password: "hasze8-qidqeZ-piwxed"
+  password: "hasze8qidqeZpiwxed"
   database: bn_drupal
   existingSecret: ""
 ## @section Volume Permissions parameters
