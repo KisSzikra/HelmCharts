@@ -673,7 +673,7 @@ externalDatabase:
   port: 3306
   user: bn_drupal
   password: "hasze8-qidqeZ-piwxed"
-  database: bitnami_drupal
+  database: bn_drupal
   existingSecret: ""
 ## @section Volume Permissions parameters
 
