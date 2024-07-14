@@ -1,0 +1,5 @@
+prometheus-community/prometheus
+
+helm show values prometheus-community/prometheus > values.yml 
+
+helm install elasticsearch prometheus-community/prometheus -f values.yml -n monitoring

@@ -1,0 +1,77 @@
+Link:
+https://medium.com/@davis.angwenyi/how-to-install-elastic-search-using-helm-into-kubernetes-de1fb1011076
+
+helm repo add elastic https://helm.elastic.co
+
+helm search repo elastic
+
+### We are only interested in 4 ###
+elastic/filebeat
+elastic/logstash
+elastic/elasticsearch
+elastic/kibana
+
+
+helm show values elastic/filebeat > filebeat/values.yml 
+helm show values elastic/logstash > logstash/values.yml 
+helm show values elastic/elasticsearch > elasticsearch/values.yml 
+helm show values elastic/kibana > kibana/values.yml
+
+### Edit files ###
+File: elasticsearch/values.yaml
+readinessProbe:
+  initialDelaySeconds: 200 #original: 10
+
+
+File: filebeat/values.yml 
+filebeatConfig:
+    filebeat.yml: |
+      filebeat.inputs:
+      - type: container
+        paths:
+          - /var/log/containers/*.log
+        processors:
+        - add_kubernetes_metadata:
+            host: ${NODE_NAME}
+            matchers:
+            - logs_path:
+                logs_path: "/var/log/containers/"
+
+      output.logstash:
+        hosts: ["logstash-logstash:5044"]
+
+### Edit files END ###
+
+### Install ###
+helm install elasticsearch elastic/elasticsearch -f elasticsearch/values.yml -n monitoring
+helm install filebeat elastic/filebeat -f filebeat/values.yml -n monitoring
+helm install logstash elastic/logstash -f logstash/values.yml -n monitoring
+helm install kibana elastic/kibana -f kibana/values.yml -n monitoring 
+
+
+### Get username and password ###
+kubectl get secret -n monitoring elasticsearch-master-credentials -o jsonpath="{.data.username}" | base64 --decode
+kubectl get secret -n monitoring elasticsearch-master-credentials -o jsonpath="{.data.password}" | base64 --decode
+
+NOTES - elasticsearch:
+1. Watch all cluster members come up.
+kubectl get pods --namespace=monitoring -l app=elasticsearch-master -w
+2. Retrieve elastic user's password.
+kubectl get secrets --namespace=monitoring elasticsearch-master-credentials -ojsonpath='{.data.password}' | base64 -d
+3. Test cluster health using Helm test.
+helm --namespace=monitoring test elasticsearch
+
+NOTES - filebeat:
+1. Watch all containers come up.
+kubectl get pods --namespace=monitoring -l app=filebeat-filebeat -w
+
+NOTES - logstash:
+1. Watch all cluster members come up.
+kubectl get pods --namespace=monitoring -l app=logstash-logstash -w
+
+
+### Un-Install ###
+helm delete elasticsearch -n monitoring
+helm delete filebeat -n monitoring
+helm delete logstash -n monitoring
+helm delete kibana -n monitoring
