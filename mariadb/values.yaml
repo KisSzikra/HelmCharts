@@ -1226,7 +1226,7 @@ metrics:
   ##
   livenessProbe:
     enabled: true
-    initialDelaySeconds: 120
+    initialDelaySeconds: 150
     periodSeconds: 10
     timeoutSeconds: 1
     successThreshold: 1
