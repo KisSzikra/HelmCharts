@@ -47,6 +47,7 @@ wireguard:
   clients:
     - PublicKey: pKDpGthS9y+5BeUAIvcBFhxZqurDO+YaU8D9zLclDlA=
       AllowedIPs: 10.10.0.101/32
+      FriendlyName: szikraadam
 
 securityContext:
   runAsNonRoot: true
