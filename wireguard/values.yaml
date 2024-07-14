@@ -154,7 +154,7 @@ tolerations: []
 ## Metrics configuration
 metrics:
   # -- Enable exposing Wireguard metrics
-  enabled: true
+  enabled: false
   # -- Wireguard Exporter image
   image:
     repository: docker.io/mindflavor/prometheus-wireguard-exporter
