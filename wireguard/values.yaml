@@ -48,7 +48,6 @@ wireguard:
     - PublicKey: pKDpGthS9y+5BeUAIvcBFhxZqurDO+YaU8D9zLclDlA=
       AllowedIPs: 10.10.0.101/32
       #FriendlyName: szikraadam
-
     - PublicKey: hr6piaSPN9f8KisroMjywRe+dLfULOkIy6XBU8B0+Ak=
       AllowedIPs: 10.10.0.102/32
       #FriendlyName: erdelyi_balazs_server
@@ -158,7 +157,7 @@ tolerations: []
 ## Metrics configuration
 metrics:
   # -- Enable exposing Wireguard metrics
-  enabled: false
+  enabled: true
   # -- Wireguard Exporter image
   image:
     repository: docker.io/mindflavor/prometheus-wireguard-exporter
