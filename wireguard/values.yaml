@@ -74,7 +74,7 @@ service:
   extraPorts: []
 # -- Name of a secret with a wireguard private key on key privatekey, if not provided on first install a hook generates one.
 secretName: ~
-replicaCount: 3
+replicaCount: 1
 resources:
   requests:
     memory: 256Mi
@@ -94,7 +94,7 @@ disruptionBudget:
   minAvailable: 2
 autoscaling:
   enabled: true
-  minReplicas: 3
+  minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 75
 # -- Provide additional environment variables to the wireguard container
