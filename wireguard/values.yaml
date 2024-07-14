@@ -49,6 +49,10 @@ wireguard:
       AllowedIPs: 10.10.0.101/32
       FriendlyName: szikraadam
 
+    - PublicKey: hr6piaSPN9f8KisroMjywRe+dLfULOkIy6XBU8B0+Ak=
+      AllowedIPs: 10.10.0.102/32
+      FriendlyName: erdelyi_balazs_server
+
 securityContext:
   runAsNonRoot: true
   runAsUser: 1000
