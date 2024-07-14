@@ -45,7 +45,7 @@ wireguard:
   natAddSourceNet: true
   # -- A collection of clients that will be added to wg0.conf, accepts objects with keys PublicKey and AllowedIPs (mandatory) and optional FriendlyName or FriendlyJson (https://github.com/MindFlavor/prometheus_wireguard_exporter#friendly-tags) and PersistentKeepalive (https://www.wireguard.com/quickstart/#nat-and-firewall-traversal-persistence), stored in secret
   clients:
-    - FriendlyName: szikraadam
+    - FriendlyName: "szikraadam"
       AllowedIPs: 10.10.0.101/32
       PublicKey: "pKDpGthS9y+5BeUAIvcBFhxZqurDO+YaU8D9zLclDlA="
       
