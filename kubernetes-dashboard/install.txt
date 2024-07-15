@@ -1,0 +1,13 @@
+helm repo add k8s-dashboard https://kubernetes.github.io/dashboard
+
+helm repo update
+
+helm search repo k8s-dashboard
+
+helm pull k8s-dashboard/kubernetes-dashboard --untar
+
+helm install -f values.yaml k8s-dashboard . --namespace k8s-dashboard
+
+helm upgrade --install -f values.yaml k8s-dashboard . --namespace k8s-dashboard
+
+helm uninstall k8s-dashboard -n k8s-dashboard
