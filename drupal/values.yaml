@@ -252,7 +252,7 @@ persistence:
   ## If defined, PVC must be created manually before volume will be bound
   ##
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   ## @param persistence.size PVC Storage Request for Drupal volume
   ##
   size: 8Gi
